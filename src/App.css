@@ -1,38 +1,204 @@
-.App {
-  text-align: center;
+.BG { 
+  /* Background the whole thing */
+  background-color: #F8F8F8;
+  display: flex;
+  height: 600vh;
+  /* Need to change height to 600vh to support 6 pages */
+  align-items: center;
+  flex-direction: column;
+
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.Button {
+  position:fixed;
+  right: 2vw;
+  top: 2.5vh;
+ 
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.Home {
+  display: flex;
+  justify-content: center;
+  height: 100vh;
+  width: 100vw;
+  background-color: F8F8F8;
+  flex-direction: column;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.Intro {
+  display: flex;
+  align-items: center;
+  margin-left: 7vw;
+  width: 70vw;
+  flex-direction: row;
+}
+
+.Name {
+  font-size: 64px;
+  font-weight: bold;
+  margin-top: 20vh;
+}
+
+.Desc {
+  font-size: 30px;
+  font-weight: 300;
+  margin-top: 1.5vh;
+
+}
+
+.BigDesc {
+  margin-top: 5vh;
+  font-size: 40px;
+  font-weight: 200;
+}
+
+.SBC { /*Social button Containers*/
+  display: flex;
+  flex-direction: row;
+  height: 5vh;
+  width: 25vw;
+  justify-content: space-evenly;
+}
+
+.About {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 90vh;
+  width: 100vw;
+  margin-top: 10vh;
+  flex-direction: row;
+  gap: 0.8vw;
+
+}
+
+.Sphere {
+  height: 50vh;
+  width: 50vh;
+  border-radius: 100%;
+  background-color: yellow;
+  overflow: hidden;
+
+}
+.ZO {
+  font-size: 11vh;
+  font-weight: 200;
+  color: #4200FF;
+  margin-left: -6vw;
+  margin-top: 40vh;
+}
+
+.AboutD {
+  display: flex;
+  flex-direction: column;
+  margin-left: 4.5vw;
+  justify-content: space-evenly;
+  gap: 1vh;
+  font-weight: 300;
+}
+
+.AboutP {
+  width: 45vw;
+  text-indent: 2vw;
+  font-size: 3vh;
+}
+
+.SkillsC {
+
+  height: 10vh;
+  width: 40vw;
+  display: flex;
+  flex-direction: row;
+  margin-top: 3vh;
+  gap: 10vw;
+
+}
+
+.SkillsI {
+  height: 10vh;
+  width: 26.5vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  gap: 10px;
+  font-size: 2.3vh;
+}
+
+.Experience{
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  width: 100vw;
+  margin-top: 5vh;
+
+}
+.ZT {
+  font-size: 13vh;
+  color: #4200FF;
+  font-weight: 200;
+  width: 37vw;
+  margin-right: 5vw;
+
+}
+
+.ExpDesc {
+  display: flex;
+  flex-direction: row;
+  margin-left: 10vh;
+  width: 30vw;
+  
+}
+
+.ExpDescC {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 6.2vh;
+  height: 40vh;
+  margin-bottom: 10vh;
+}
+
+.Projects{
+  display: flex;
+  flex-direction: column;
+  width: 100vw;
+  height: 20vh;
+  margin-top: 25vh;
+  justify-content: center;
+}
+
+.ProjectsD {
+  display: flex;
+  flex-direction: row;
+  width: 100vw;
+  height: 85vh;
+  justify-content: center;
+  
+}
+
+.ProjectsI {
+  width: 50vw;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.ProjectsE {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  width: 30vw;
+
+}
+.CopyRight {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
-
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+  margin-top: 20vh;
+  margin-bottom: 3vw;
 }
