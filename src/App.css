@@ -1,28 +1,40 @@
+html {
+  scroll-snap-type: y mandatory;
+  overflow-y: scroll;
+  /* scroll-snap-points-y: repeat(80vh); */
+}
 .BG { 
   /* Background the whole thing */
   background-color: #F8F8F8;
   display: flex;
-  height: 600vh;
+  height: 550vh;
   /* Need to change height to 600vh to support 6 pages */
   align-items: center;
   flex-direction: column;
 
 }
-
+.section {
+  scroll-snap-align: center;
+}
 .Button {
   position:fixed;
-  right: 2vw;
+  right: 3.6vw;
   top: 2.5vh;
  
 }
-
+.Menu {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
 .Home {
   display: flex;
   justify-content: center;
   height: 100vh;
   width: 100vw;
-  background-color: F8F8F8;
   flex-direction: column;
+  scroll-snap-align: center;
 }
 
 .Intro {
@@ -64,12 +76,12 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 90vh;
+  height: 100vh;
   width: 100vw;
   margin-top: 10vh;
   flex-direction: row;
   gap: 0.8vw;
-
+  scroll-snap-align: center;
 }
 
 .Sphere {
@@ -129,10 +141,10 @@
   flex-direction: row;
   justify-content: center;
   align-items: center;
-  height: 100vh;
+  height: 55vh;
   width: 100vw;
   margin-top: 5vh;
-
+  scroll-snap-align: center;
 }
 .ZT {
   font-size: 13vh;
@@ -158,26 +170,45 @@
   gap: 6.2vh;
   height: 40vh;
   margin-bottom: 10vh;
+  
 }
 
 .Projects{
   display: flex;
   flex-direction: column;
   width: 100vw;
-  height: 20vh;
+  height: 30vh;
   margin-top: 25vh;
   justify-content: center;
+  scroll-snap-align: end;
+
 }
 
 .ProjectsD {
   display: flex;
   flex-direction: row;
   width: 100vw;
-  height: 85vh;
+  height: 100vh;
   justify-content: center;
-  
+  scroll-snap-align: center;
 }
 
+.ProjectsN {
+  display: flex;
+  flex-direction: column;
+  width: 100vw;
+  height: 100vh;
+  justify-content: center;
+  align-items: center;
+  scroll-snap-align: center;
+}
+
+.Row {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  margin-bottom: 10vh;
+}
 .ProjectsI {
   width: 50vw;
   height: 100vh;
@@ -198,7 +229,16 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
-  margin-top: 20vh;
-  margin-bottom: 3vw;
+  margin-top: 9vh;
+  margin-bottom: 30vh;
+}
+
+.Parts {
+  color: rgb(180, 180, 180);
+  
+}
+
+.Parts:hover{
+  color: black;
+  cursor: pointer;
 }
