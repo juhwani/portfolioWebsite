@@ -141,7 +141,7 @@ html {
   flex-direction: row;
   justify-content: center;
   align-items: center;
-  height: 55vh;
+  height: 100vh;
   width: 100vw;
   margin-top: 5vh;
   scroll-snap-align: center;
@@ -157,20 +157,16 @@ html {
 
 .ExpDesc {
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   margin-left: 10vh;
   width: 30vw;
-  
-}
-
-.ExpDescC {
-  display: flex;
-  flex-direction: column;
   justify-content: space-between;
-  gap: 6.2vh;
-  height: 40vh;
-  margin-bottom: 10vh;
-  
+  gap: 10vh;
+}
+.ExpRow {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
 }
 
 .Projects{
@@ -241,4 +237,23 @@ html {
 .Parts:hover{
   color: black;
   cursor: pointer;
+}
+
+#progress {
+  position: fixed;
+  bottom: 5vh;
+  right: 3.6vw;
+  transform: rotate(-90deg);
+}
+circle {
+  stroke-dashoffset: 0;
+  stroke-width: 15%;
+  fill: none;
+}
+.bg {
+  stroke: #c3c3c3;
+  opacity: 0.3;
+}
+#progress .indicator {
+  stroke: blue;
 }

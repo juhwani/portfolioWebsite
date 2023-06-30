@@ -45,17 +45,51 @@ function App() {
     setHover(false);
   };
 
+  const ref = useRef(null);
+  const {scrollYProgress} = useScroll();
+  const scaleX = useSpring(scrollYProgress, {
+    stiffness: 100,
+    damping: 30,
+    restDelta: 0.001
+  });
 
   return(
-
-    <div className = "BG">
-      <motion.div whileHover = {{scale: 1.2}} whileTap = {{scale: 0.97}} onClick = {() => setIsOpen(!isOpen)} className = "Button"> {/* Plus Button */}
+    
+    <>
+      
+    <svg id="progress" width="100" height="100" viewBox="0 0 100 100">
+        <circle cx="50" cy="50" r="30" pathLength="1" className="bg"  />
+        <motion.circle
+          cx="50"
+          cy="50"
+          r="30"
+          pathLength="1"
+          className="indicator"
+          style={{ pathLength: scrollYProgress}}
+        />
+    </svg>
+    <div className = "BG" ref={ref}>
+      
+    <svg id="progress" width="100" height="100" viewBox="0 0 100 100">
+        <circle cx="50" cy="50" r="30" pathLength="1" className="bg" />
+        <motion.circle
+          cx="50"
+          cy="50"
+          r="30"
+          pathLength="1"
+          className="indicator"
+          style={{ pathLength: scrollYProgress }}
+        />
+    </svg>
+      <motion.div     initial={{ opacity: 0, scale: 0.5 }}
+    animate={{ opacity: 1, scale: 1 }}
+    transition={{ duration: 2 }} whileHover = {{scale: 1.2}} whileTap = {{scale: 0.97}} onClick = {() => setIsOpen(!isOpen)} className = "Button"> {/* Plus Button */}
         <motion.img  animate = {isOpen ? "open" : "closed"} variants = {{open: { rotate: 135}, closed: { rotate: 0 }}} src={plus} width = "80" height = "80"/>
       </motion.div>
       <motion.ul class = "Menu" style = {{
         listStyleType: "none", 
         position: "fixed", 
-        right: "3vw", 
+        right: "3.2vw", 
         top: "9vh", 
         display: "flex", 
         flexDirection: "column",
@@ -87,51 +121,51 @@ function App() {
             }
           }
         }}>
-        <motion.li class = "Parts" whileHover = {{scale: 1.05}} variants={itemVariants}>home</motion.li>
-        <motion.li class = "Parts" whileHover = {{scale: 1.05}} variants={itemVariants}>about</motion.li>
-        <motion.li class = "Parts" whileHover = {{scale: 1.05}} variants={itemVariants}>experience</motion.li>
-        <motion.li class = "Parts" whileHover = {{scale: 1.05}} variants={itemVariants}>project</motion.li>
+        <motion.li initial = {{opacity: 0}} class = "Parts" whileHover = {{scale: 1.05}} variants={itemVariants}>home</motion.li>
+        <motion.li initial = {{opacity: 0}} class = "Parts" whileHover = {{scale: 1.05}} variants={itemVariants}>about</motion.li>
+        <motion.li initial = {{opacity: 0}} class = "Parts" whileHover = {{scale: 1.05}} variants={itemVariants}>experience</motion.li>
+        <motion.li initial = {{opacity: 0}} class = "Parts" whileHover = {{scale: 1.05}} variants={itemVariants}>project</motion.li>
       </motion.ul>
-
+      
 
       <section className = "Home">
         <motion.div initial = {{ opacity: 0}} whileInView={{opacity: 1}} transition={{}}className = "Intro">
           <header className = "Name">
-            Hi, I'm <span style = {{color: "#4200FF"}}>Juhwan.</span> <div className = "Desc">Sometimes I go by J.</div>
-            <div className = "BigDesc">I’m a software engineer based in Pennsylvania. <div>I have huge interests in the field of A.I. as well as web development.</div></div>
+            Hi, I'm <span style = {{color: "#4200FF"}}>Juhwan.</span> <motion.div initial = {{y: 20, opacity: 0}} whileInView = {{opacity: 1}} animate = {{y: 0}}transition = {{ delay: 0.3, duration: 1.5}} className = "Desc">Sometimes I go by J.</motion.div>
+            <motion.div initial = {{opacity: 0 }} whileInView = {{opacity: 1}} initial = {{ y: 20, opacity: 0}} animate = {{ y: 0}} transition = {{delay: 0.3, duration: 1}}className = "BigDesc">I’m a software engineer based in Pennsylvania. <motion.div>I have huge interests in the field of A.I. as well as web development.</motion.div></motion.div>
           </header>
         </motion.div>
         <motion.div className = "SBC" style = {{marginLeft: "5vw", marginTop: "18vh"}} >
-          <a href = "mailto:jhj5347@gmail.com"><motion.img initial = {{opacity: 0, scale: 0.5}} animate = {{opacity: 1, scale: 1}} transition = {{duration: 1, ease: [0, 0.71, 0.2, 1.01], scale: {type: "spring", damping: 5, stiffness: 100, restDelta: 0.001}}}  whileHover = {{scale: 1.2}} src={sendi} width = "50" height = "50"/></a>
-          <a href = "https://www.linkedin.com/in/juhwan-jung"><motion.img initial = {{opacity: 0, scale: 0.5}} animate = {{opacity: 1, scale: 1}} transition = {{duration: 1, ease: [0, 0.71, 0.2, 1.01], scale: {type: "spring", damping: 5, stiffness: 100, restDelta: 0.001}}}whileHover = {{scale: 1.2}} src={linkedini} width = "50" height = "50"/></a>
-          <motion.img initial = {{opacity: 0, scale: 0.5}} animate = {{opacity: 1, scale: 1}} transition = {{duration: 1, ease: [0, 0.71, 0.2, 1.01], scale: {type: "spring", damping: 5, stiffness: 100, restDelta: 0.001}}}whileHover = {{scale: 1.2}} src={inboxi} width = "50" height = "50"/>
-          <a href = "https://www.github.com/juhwani"><motion.img initial = {{opacity: 0, scale: 0.5}} animate = {{opacity: 1, scale: 1}} transition = {{duration: 1, ease: [0, 0.71, 0.2, 1.01], scale: {type: "spring", damping: 5, stiffness: 100, restDelta: 0.001}}}whileHover = {{scale: 1.2}} src={githubi} width = "50" height = "50"/></a>
+          <a href = "mailto:jhj5347@gmail.com"><motion.img initial = {{opacity: 0, scale: 0.5, y: 300}} animate = {{y: 0,opacity: 1, scale: 1}} transition = {{duration: 1, scale: {type: "spring", damping: 10, stiffness: 200, restDelta: 0.001}}}  whileHover = {{scale: 1.2}} src={sendi} width = "50" height = "50"/></a>
+          <a href = "https://www.linkedin.com/in/juhwan-jung"><motion.img initial = {{opacity: 0, scale: 0.5, y: 300 }} animate = {{ y: 0, opacity: 1, scale: 1}} transition = {{duration: 1.25, scale: {type: "spring", damping: 10, stiffness: 100, restDelta: 0.001}}}whileHover = {{scale: 1.2}} src={linkedini} width = "50" height = "50"/></a>
+          <motion.img initial = {{opacity: 0, scale: 0.5, y: 300}} animate = {{opacity: 1, scale: 1, y: 0}} transition = {{duration: 1.5, scale: {type: "spring", damping: 10, stiffness: 100, restDelta: 0.001}}}whileHover = {{scale: 1.2}} src={inboxi} width = "50" height = "50"/>
+          <a href = "https://www.github.com/juhwani"><motion.img initial = {{opacity: 0, scale: 0.5, y: 300}} animate = {{opacity: 1, scale: 1, y: 0}} transition = {{duration: 2, scale: {type: "spring", damping: 10, stiffness: 100, restDelta: 0.001}}}whileHover = {{scale: 1.2}} src={githubi} width = "50" height = "50"/></a>
         </motion.div>
       </section>
 
             {/* Start of About Page */}
       <section className = "About">
         <div className = "Sphere">
-          <img style = {{marginTop: "-7vh", marginLeft: "-5vw"}} src={portrait} width = "676" height = "885"/>
+          <img style = {{marginTop: "-7vh", marginLeft: "-5vw", height: "90vh", aspectRatio: "0.763841"}} src={portrait}/>
         </div>
         <motion.header  className = "ZO">01</motion.header>
         <div className = "AboutD">
           <header style = {{ fontSize: 55, fontWeight: "bold"}}>ABOUT</header>
-          <div className = "AboutP">
-            <p>Originated from South Korea, I am currently studying Bachelor’s of Computer Science at the Pennsylvania State University.</p>
-            <p>I have had experiences working at a non-profit medical organization as a front-end developer as well as online mobile game software development company</p>
-            <p>I am a developer that believe that A.I. will be the gateway to solutions of many of the problems we are experiencing at the global and local level.</p>
-          </div>
+          <motion.div className = "AboutP">
+            <motion.p whileInView = {{opacity: 1, y: 0}} initial = {{opacity: 0, y: -100}} animate = {{y: -100}} transition = {{duration: 0.5}}>Originated from South Korea, I am currently studying Bachelor’s of Computer Science at the Pennsylvania State University.</motion.p>
+            <motion.p whileInView = {{opacity: 1, y: 0}} initial = {{opacity: 0, y: -100}} animate = {{y: -100}} transition = {{delay: 0.25, duration: 0.5}}>I have had experiences working at a non-profit medical organization as a front-end developer as well as online mobile game software development company</motion.p>
+            <motion.p whileInView = {{opacity: 1, y: 0}} initial = {{opacity: 0, y: -100}} animate = {{y: -100}} transition = {{delay: 0.5, duration: 0.5}}>I am a developer that believe that A.I. will be the gateway to solutions of many of the problems we are experiencing at the global and local level.</motion.p>
+          </motion.div>
           <div className="SkillsC">
             <div className="SkillsI">
-              <header><img src={triangle} width = "15" height = "15" style = {{marginRight : 20}}/>Python</header>
-              <header><img src={triangle} width = "15" height = "15" style = {{marginRight : 20}}/>Javascript</header>
-              <header><img src={triangle} width = "15" height = "15" style = {{marginRight : 20}}/>HTML/CSS</header>
+              <motion.header initial = {{y: 100, opacity: 0}} whileInView = {{opacity: 1, y: 0}}  animate = {{opacity: 0, y: 100}} transition = {{delay: 0.5, duration: 0.5}}><img src={triangle} width = "15" height = "15" style = {{marginRight : 20}}/>Python</motion.header>
+              <motion.header whileInView = {{opacity: 1, y: 0}} initial = {{y: 100,opacity: 0}} animate = {{opacity: 0, y: 100}} transition = {{delay: 0.6, duration: 0.5}}><img src={triangle} width = "15" height = "15" style = {{marginRight : 20}}/>Javascript</motion.header>
+              <motion.header whileInView = {{opacity: 1, y: 0}} initial = {{y: 100, opacity: 0}} animate = {{opacity: 0, y: 100}} transition = {{delay: 0.7, duration: 0.5}}><img src={triangle} width = "15" height = "15" style = {{marginRight : 20}}/>HTML/CSS</motion.header>
             </div>
             <div className="SkillsI">
-              <header><img src={triangle} width = "15" height = "15" style = {{marginRight : 20}}/>React.js/ Node.js</header>
-              <header><img src={triangle} width = "15" height = "15" style = {{marginRight : 20}}/>C</header>
-              <header><img src={triangle} width = "15" height = "15" style = {{marginRight : 20}}/>Java</header>
+              <motion.header whileInView = {{opacity: 1, y: 0}} initial = {{y: 100, opacity: 0}}  animate = {{y: 100}} transition = {{delay: 0.8, duration: 0.5}}><img src={triangle} width = "15" height = "15" style = {{marginRight : 20}}/>React.js/ Node.js</motion.header>
+              <motion.header whileInView = {{opacity: 1, y: 0}} initial = {{y: 100, opacity: 0}} animate = {{y: 100}} transition = {{delay: 0.9, duration: 0.5}}><img src={triangle} width = "15" height = "15" style = {{marginRight : 20}}/>C</motion.header>
+              <motion.header whileInView = {{opacity: 1, y: 0}} initial = {{y: 100, opacity: 0}} animate = {{y: 100}} transition = {{delay: 1, duration: 0.5}}><img src={triangle} width = "15" height = "15" style = {{marginRight : 20}}/>Java</motion.header>
             </div>
           </div>
         </div>
@@ -145,28 +179,32 @@ function App() {
             <header style = {{fontSize: "3.5vh", fontWeight: 400, color: "black", marginTop: 60, marginBottom: "10vh"}}>Here are some of the places I have worked for in the past!</header>
           </div>
         </div>
+        
         <div className="ExpDesc">
-          <div className="ExpDescC" style = {{gap: "19vh"}}>
+          {/* FOLDERS/PROJECTS */}
+          <div className="ExpRow">
             <img src={folder} width = "50" height = "40"/>
-            <img src={folder} width = "50" height = "40"/>
-            <img src={folder} width = "50" height = "40"/>
-          </div>
-        <div className="ExpDescC">
-          <header style = {{fontSize: 25, fontWeight: "bold", marginLeft: 40, marginTop: 5}}>Telepossible
-            <header style = {{fontSize: 15, fontWeight: 500,color: "#00000080", marginTop: 2.5}}>Front-end Developer</header>
-            <ul style = {{fontSize: 15, fontWeight: 500, marginLeft: -35}}>
-              <li>Created interactive dual landing page for patients and doctors utilizing React.js framework.</li>
-              <li>Established profile pages for doctors using the Axios module to update data in real time upon edits</li>
-            </ul>
-          </header>
-          <header style = {{fontSize: 25, fontWeight: "bold", marginLeft: 40, marginTop: 17}}>MI Co.
-            <header style = {{fontSize: 15, fontWeight: 500,color: "#00000080", marginTop: 2.5}}>Software Developer intern</header>
+            <header style = {{fontSize: 25, fontWeight: "bold", marginLeft: 40, marginTop: "0.3vh"}}>Telepossible
+              <header style = {{fontSize: 15, fontWeight: 500,color: "#00000080", marginTop: 2.5}}>Front-end Developer</header>
               <ul style = {{fontSize: 15, fontWeight: 500, marginLeft: -35}}>
-                <li>Ran numerous trials for games with other internees to experiment on user reported bugs.</li>
-                <li>Directly communicated with the head developer while analyzing base codes of games</li>
+                <li>Created interactive dual landing page for patients and doctors utilizing React.js framework.</li>
+                <li>Established profile pages for doctors using the Axios module to update data in real time upon edits</li>
               </ul>
-          </header>
-          <header style = {{fontSize: 25, fontWeight: "bold", marginLeft: 40, marginTop: 17}}>Republic of Korean Army
+            </header>
+          </div>
+          <div className="ExpRow">
+            <img src={folder} width = "50" height = "40"/>
+            <header style = {{fontSize: 25, fontWeight: "bold", marginLeft: 40,marginTop: "0.3vh"}}>MI Co.
+              <header style = {{fontSize: 15, fontWeight: 500,color: "#00000080", marginTop: 2.5}}>Software Developer intern</header>
+                <ul style = {{fontSize: 15, fontWeight: 500, marginLeft: -35}}>
+                  <li>Ran numerous trials for games with other internees to experiment on user reported bugs.</li>
+                  <li>Directly communicated with the head developer while analyzing base codes of games</li>
+                </ul>
+            </header>
+          </div>
+          <div className="ExpRow">
+            <img src={folder} width = "50" height = "40"/>
+            <header style = {{fontSize: 25, fontWeight: "bold", marginLeft: 40,marginTop: "0.3vh"}}>Republic of Korean Army
             <header style = {{fontSize: 15, fontWeight: 500,color: "#00000080", marginTop: 2.5}}>Squad Leader</header>
               <ul style = {{fontSize: 15, fontWeight: 500, marginLeft: -35}}>
                 <li>Participated in KCTC, a seven-day war simulation training, leading a squad of ten soldiers.</li>
@@ -174,6 +212,7 @@ function App() {
               </ul>
             </header>
           </div>
+        
         </div>
       </section>
 
@@ -235,6 +274,7 @@ function App() {
       
 {/* testing */}
     </div>
+    </>
   );
 }
 
